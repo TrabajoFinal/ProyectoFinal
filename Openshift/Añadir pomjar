@@ -1,0 +1,7 @@
+El pom_jar.xml contiene el codigo necesario para poder generar un jar ejecutable, por lo cual solo hay que añadirle el codigo de este  al pom.xml del proyecto.
+
+Luego de esto hay que comprobar que funciona poniendo los siguientes comandos.
+
+mvn clean install
+
+java -jar target/FinalProject.jar

@@ -1,0 +1,40 @@
+body{
+		background-image: url("/img/campo.png");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	-moz-background-size: cover;
+}
+.table-responsive{
+	margin: auto;
+	width: 900px;
+	background-color: white;
+}
+.imagen{
+	padding-bottom: 2em;
+	text-align: center;
+}
+.navbar .nav {
+			margin: 0;
+			display: table;
+			width: 100%;
+		  }
+		  .navbar .nav li {
+			display: table-cell;
+			width: 1%;
+			float: none;
+			font-weight: bolder;
+			font-size: 25px;
+		  }
+.tab-pane{
+	color: black;
+	margin: auto;
+}
+#cabecera{
+	background-color: green;
+}
+.form-horizontal{
+width: 300px;
+	margin: auto;
+}

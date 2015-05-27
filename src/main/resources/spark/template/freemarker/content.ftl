@@ -25,52 +25,37 @@
           <div id="cabecera">
             <thead>
               <tr>
-                <th scope="col">Pos</th>
-                <th scope="col">Equipo</th>
-                <th scope="col">P.J.</th>
-                <th scope="col">P.G.</th>
-                <th scope="col">P.E.</th>
-                <th scope="col">P.P.</th>
-                <th scope="col">G.F.</th>
-                <th scope="col">G.C.</th>
-                <th scope="col">Puntos</th>
-                <th scope="col">Action</th>
+                <th>Equipo</th>  
+                <th>Partidos Jugados</th>
+                <th>Partidos Ganados</th>
+                <th>Partidos Empatados</th>
+                <th>Partidos Perdidos</th>
+                <th>Goles Favor</th>
+                <th>Goles Contra</th>
+                <th>Puntos</th>
+                <th>Action</th>
               </tr>
             </thead>
           </div>
 
           <div id="cuerpo">
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Barcelona</td>
-                <td>36</td>
-                <td>29</td>
-                <td>3</td>
-                <td>4</td>
-                <td>107</td>
-                <td>19</td>
-                <td>90</td>         
-                <td>
-                  <a href=""><span class="glyphicon glyphicon-edit"></span> Edit</a>
-                  <a href=""><span class="glyphicon glyphicon-trash"></span> Delete</a>
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>R. Madrid</td>
-                <td>36</td>
-                <td>28</td>
-                <td>2</td>
-                <td>6</td>
-                <td>107</td>
-                <td>34</td>
-                <td>86</td>         
-                <td>
-                  <a href=""><span class="glyphicon glyphicon-edit"></span> Edit</a>
-                  <a href=""><span class="glyphicon glyphicon-trash"></span> Delete</a>
-                </td>
-              </tr>
+          <tbody>
+            <#list teams as team>
+                <tr>
+                 <td>${team.nombre}</td> 
+                 <td>${team.pj}</td>
+                 <td>${team.pg}</td>
+                 <td>${team.pe}</td>
+                 <td>${team.pp}</td>
+                 <td>${team.gf}</td>
+                 <td>${team.gc}</td>
+                 <td>${team.puntos}</td>
+                 <td>
+                    <a href=""><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                    <a href=""><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                 </td>
+                </tr>
+              </#list>
             </tbody>
           </div>
         </table>

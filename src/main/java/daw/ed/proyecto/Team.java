@@ -12,19 +12,19 @@ package daw.ed.proyecto;
 public class Team {
 
     private String nm;
-    private int pj;
-    private int pg;
-    private int pe;
-    private int pp;
-    private int gf;
-    private int gc;
-    private int puntos;
+    private String pj;
+    private String pg;
+    private String pe;
+    private String pp;
+    private String gf;
+    private String gc;
+    private String puntos;
 
     public Team() {
 
     }
 
-    public Team(String nm, int pj, int pg, int pe, int pp, int gf, int gc, int puntos) {
+    public Team(String nm, String pj, String pg, String pe, String pp, String gf, String gc, String puntos) {
         this.nm = nm;
         this.pj = pj;
         this.pg = pg;
@@ -35,67 +35,67 @@ public class Team {
         this.puntos = puntos;
     }
 
-    public String getNm() {
+    public String getNombre() {
         return nm;
     }
 
-    public void setNm(String nm) {
+    public void setNombre(String nm) {
         this.nm = nm;
     }
 
-    public int getPj() {
+    public String getPj() {
         return pj;
     }
 
-    public void setPj(int pj) {
+    public void setPj(String pj) {
         this.pj = pj;
     }
 
-    public int getPg() {
+    public String getPg() {
         return pg;
     }
 
-    public void setPg(int pg) {
+    public void setPg(String pg) {
         this.pg = pg;
     }
 
-    public int getPe() {
+    public String getPe() {
         return pe;
     }
 
-    public void setPe(int pe) {
+    public void setPe(String pe) {
         this.pe = pe;
     }
 
-    public int getPp() {
+    public String getPp() {
         return pp;
     }
 
-    public void setPp(int pp) {
+    public void setPp(String pp) {
         this.pp = pp;
     }
 
-    public int getGf() {
+    public String getGf() {
         return gf;
     }
 
-    public void setGf(int gf) {
+    public void setGf(String gf) {
         this.gf = gf;
     }
 
-    public int getGc() {
+    public String getGc() {
         return gc;
     }
 
-    public void setGc(int gc) {
+    public void setGc(String gc) {
         this.gc = gc;
     }
 
-    public int getPuntos() {
+    public String getPuntos() {
         return puntos;
     }
 
-    public void setPuntos(int puntos) {
+    public void setPuntos(String puntos) {
         this.puntos = puntos;
     }
 

@@ -9,24 +9,25 @@ import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
-import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 import com.mongodb.WriteResult;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import java.net.UnknownHostException;
+import org.bson.Document;
 
 /**
  *
  * @author usuario
  */
 public class CRUD {
-    private static MongoClient mongo;
-    private static DB db;
-    private static DBCollection col;
     
     public static void main(String[] args) throws UnknownHostException {
-        mongo = new MongoClient("localhost",4567);
-        db = mongo.getDB("equipos");
-        col = db.getCollection("teams");
+        MongoClient client = new MongoClient();
+        MongoDatabase database = client.getDatabase("equipos");
+        MongoCollection<Document> collection = database.getCollection("insertTeam");
+        
+        collection.drop();
         
         createTeam();
 

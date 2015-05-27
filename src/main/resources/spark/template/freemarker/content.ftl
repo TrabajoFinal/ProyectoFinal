@@ -11,8 +11,8 @@
   <!-- Nav tabs -->
   <div class="navbar">
     <ul class="nav" role="tablist">
-      <li role="presentation" class="active"><a href="/freemarker/team" aria-controls="List Users" role="tab" data-toggle="tab"><font color="black">Clasificación</font></a></li>
-      <li role="presentation"><a href="/freemarker/team/create" aria-controls="Create User" role="tab" data-toggle="tab"><font color="black">Inserción</font></a></li>
+      <li role="presentation" class="active"><a href="/freemarker/team" aria-controls="List Users" role="tab" data-toggle="tab"><font color="black">Clasification</font></a></li>
+      <li role="presentation"><a href="/freemarker/team/create" aria-controls="Create User" role="tab" data-toggle="tab"><font color="black">Insertion</font></a></li>
     </ul>
   </div>
 
@@ -66,36 +66,6 @@
                 <td>107</td>
                 <td>34</td>
                 <td>86</td>         
-                <td>
-                  <a href=""><span class="glyphicon glyphicon-edit"></span> Edit</a>
-                  <a href=""><span class="glyphicon glyphicon-trash"></span> Delete</a>
-                </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Atlético</td>
-                <td>36</td>
-                <td>23</td>
-                <td>8</td>
-                <td>5</td>
-                <td>67</td>
-                <td>28</td>
-                <td>77</td>         
-                <td>
-                  <a href=""><span class="glyphicon glyphicon-edit"></span> Edit</a>
-                  <a href=""><span class="glyphicon glyphicon-trash"></span> Delete</a>
-                </td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Valencia</td>
-                <td>36</td>
-                <td>21</td>
-                <td>10</td>
-                <td>5</td>
-                <td>66</td>
-                <td>29</td>
-                <td>73</td>         
                 <td>
                   <a href=""><span class="glyphicon glyphicon-edit"></span> Edit</a>
                   <a href=""><span class="glyphicon glyphicon-trash"></span> Delete</a>

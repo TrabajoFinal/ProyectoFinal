@@ -98,4 +98,9 @@ public class Team {
     public void setPuntos(int puntos) {
         this.puntos = puntos;
     }
+
+    @Override
+    public String toString() {
+        return "Team{" + "nm=" + nm + ", pj=" + pj + ", pg=" + pg + ", pe=" + pe + ", pp=" + pp + ", gf=" + gf + ", gc=" + gc + ", puntos=" + puntos + '}';
+    }
 }

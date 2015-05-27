@@ -23,6 +23,12 @@ public class App
                 return modelAndView(null, "content.ftl");
             }
         });
-            
+           
+        get(new FreeMarkerRoute("/freemarker/team/create") {
+            @Override
+            public ModelAndView handle(Request request, Response response) {
+                return modelAndView(null, "content2.ftl");
+            }
+        });
     }
 }

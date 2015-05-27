@@ -38,3 +38,18 @@ body{
 width: 300px;
 	margin: auto;
 }
+#formulario{
+margin: auto;
+	display: table;
+	font-weight: bolder;
+	color: black;
+	text-align: center;
+	font-size: 15px;
+}
+div {
+  margin: .4em 0;
+}
+div label {
+  width: 50%;
+  float: left;
+}

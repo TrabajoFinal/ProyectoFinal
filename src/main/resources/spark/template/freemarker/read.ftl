@@ -19,6 +19,16 @@
       </ul>
     </div>
   </div>
+  
+  <div id="posiciones">
+	<table class="puestos">
+		<tr>
+			<th bgcolor="#8BFB65">Champions League</th>
+			<th bgcolor="#F78D4C">Europa League</th>
+			<th bgcolor="#F72C2C">Descenso</th>
+		</tr>
+	</table>
+  </div>
 
   <!-- Tab panes -->
   <div class="tab-content">

@@ -12,7 +12,6 @@ body{
 	background-color: white;
 }
 .imagen{
-	padding-bottom: 2em;
 	text-align: center;
 }
 .navbar .nav {
@@ -58,5 +57,16 @@ div label {
     background-color: white;
 }
 #pag{
+	text-align: center;
+}
+#posiciones {
+	display: table;
+	width: 500px;
+	margin: auto;
+}
+#posiciones .puestos th{
+	display: table-cell;
+	width: 500px;
+	color: black;
 	text-align: center;
 }

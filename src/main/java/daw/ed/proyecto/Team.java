@@ -5,11 +5,13 @@
  */
 package daw.ed.proyecto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author shaheer
  */
-public class Team {
+public class Team implements Serializable{
 
     private String nm;
     private String pj;

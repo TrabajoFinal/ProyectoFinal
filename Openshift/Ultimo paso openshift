@@ -1,6 +1,0 @@
-Finalmente, mediante el siguiente comando llevamos el proceso de despliegue en un cartucho personalizado diy de openshift. Obtenemos el código fuente de tu aplicación desde github.
-
-
-$ rhc app create FinalProject diy mongodb-2.4 --repo=FinalProject --from-code=
-https://github.com/TrabajoFinal/ProyectoFinal.git
-

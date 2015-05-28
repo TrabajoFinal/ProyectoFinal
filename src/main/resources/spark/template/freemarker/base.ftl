@@ -42,7 +42,7 @@ Here goes content
       <div id="footer">
         <center>
         <div id="alumnos">
-            <font color="black"><h5><strong>Creadores:</strong> <i>Shaheer Shahzad & Cristian Bermudez Galvan</i></h5></font>
+            <font color="black"><h5><strong>Created by:</strong> <i>Shaheer Shahzad & Cristian Bermudez Galvan</i></h5></font>
         </div>
         </center>
       </div>

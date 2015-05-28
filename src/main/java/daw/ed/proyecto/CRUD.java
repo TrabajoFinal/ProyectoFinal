@@ -29,10 +29,10 @@ public class CRUD {
         
         collection.drop();
         
-        createTeam();
+        //createTeam();
 
     }
-    public static void createTeam(){
+    /*public static void createTeam(){
         DBObject doc = createDBObject(Team);
         
         WriteResult result = col.insert(doc);
@@ -44,5 +44,5 @@ public class CRUD {
     
     public static void readTeam(){
         dbObject query = BasicDBObjectBuilder.start().add("nombre", )
-    }
+    }*/
 }

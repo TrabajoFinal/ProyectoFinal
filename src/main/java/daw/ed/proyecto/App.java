@@ -26,6 +26,7 @@ public class App
                 teams.add(new Team("mi nombre","pj","pg","pe","pp","gj","gc","puntos"));
                 teams.add(new Team("mi nombre2","pj","pg","pe","pp","gj","gc","puntos"));
                 teams.add(new Team("mi nombre3","pj","pg","pe","pp","gj","gc","puntos"));
+                teams.add(new Team("FC Barcelona","38","5","1","0","45","54","87"));
                 
                 final Map<String,Object> data = new HashMap<>();
 
@@ -75,12 +76,34 @@ public class App
             }
         });
         
-        get(new FreeMarkerRoute("/edit/:team_index") {
+        get(new FreeMarkerRoute("/update/:team_index") {
 
             @Override
             public ModelAndView handle(Request rqst, Response rspns) {
-                teams.remove(Integer.parseInt(rqst.params(":team_index")));
-                return modelAndView(data,"read.ftl");
+                int id = Integer.parseInt(rqst.params(":team_index"));
+                data.put("team",teams.get(id));
+                data.put("team_index",id);
+                return modelAndView(data,"update.ftl");
+            }
+        });
+        
+        post(new FreeMarkerRoute("/update/:team_index") {
+
+            @Override
+            public ModelAndView handle(Request rqst, Response rspns) {
+                int id = Integer.parseInt(rqst.params(":team_index"));
+                teams.get(id).setNombre(rqst.queryParams("nombre"));
+                teams.get(id).setPj(rqst.queryParams("pj"));
+                teams.get(id).setPg(rqst.queryParams("pg"));
+                teams.get(id).setPe(rqst.queryParams("pe"));
+                teams.get(id).setPp(rqst.queryParams("pp"));
+                teams.get(id).setGf(rqst.queryParams("gf"));
+                teams.get(id).setGc(rqst.queryParams("gc"));
+                teams.get(id).setPuntos(rqst.queryParams("puntos"));
+ 
+                rspns.redirect("/");
+                
+                return null;
             }
         });
     }

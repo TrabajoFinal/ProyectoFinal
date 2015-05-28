@@ -57,7 +57,7 @@
                  <td>${team.gc}</td>
                  <td>${team.puntos}</td>
                  <td>
-                    <a href="/edit/${team_index}"><span class="glyphicon glyphicon-edit"></span>Edit</a>
+                    <a href="/update/${team_index}"><span class="glyphicon glyphicon-edit"></span>Edit</a>
                     <a href="/delete/${team_index}"><span class="glyphicon glyphicon-trash"></span>Delete</a>
                  </td>
                 </tr>

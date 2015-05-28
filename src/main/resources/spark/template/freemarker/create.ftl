@@ -65,7 +65,7 @@
   
   <div class="col-sm-offset-2 col-sm-10">
 	<button type="submit" class="btn btn-primary">Add</button>
-	<button type="button" class="btn btn-danger" action="/create">Reset</button>
+	<button type="button" class="btn btn-danger"><a href="/" style="text-decoration:none"><font color="white">Back</font></a></button>
   </div>
 </form>
 

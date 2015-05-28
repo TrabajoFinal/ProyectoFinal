@@ -39,6 +39,13 @@ Here goes content
         <@contenido/>
       </div>
 
+      <div id="footer">
+        <center>
+        <div id="alumnos">
+            <font color="black"><h4>Creadores: <i>Shaheer Shahzad & Cristian Bermudez Galvan</i></h4></font>
+        </div>
+        </center>
+      </div>
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
       <!-- Include all compiled plugins (below), or include individual files as needed -->

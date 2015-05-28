@@ -29,25 +29,25 @@ public class App
                 
                 final Map<String,Object> data = new HashMap<>();
 
-            get(new FreeMarkerRoute("/freemarker/team") {
+            get(new FreeMarkerRoute("/") {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 
                 data.put("teams",teams);
                 
-                return modelAndView(data, "content.ftl");
+                return modelAndView(data, "read.ftl");
             }
         });
            
-        get(new FreeMarkerRoute("/freemarker/team/create") {
+        get(new FreeMarkerRoute("/create") {
             @Override
             public ModelAndView handle(Request request, Response response) {
-                return modelAndView(null, "content2.ftl");
+                return modelAndView(null, "create.ftl");
             }
         });
         
         
-        post(new Route("/freemarker/team/create") {
+        post(new Route("/create") {
             @Override
             public Object handle(Request request, Response response) {
                 teams.add(new Team(request.queryParams("nombre"),
@@ -60,9 +60,27 @@ public class App
                         request.queryParams("puntos")
                 ));
                 
-                response.redirect("/freemarker/team");
+                response.redirect("/");
                 
                 return null;
+            }
+        });
+        
+        get(new FreeMarkerRoute("/delete/:team_index") {
+
+            @Override
+            public ModelAndView handle(Request rqst, Response rspns) {
+                teams.remove(Integer.parseInt(rqst.params(":team_index")));
+                return modelAndView(data,"read.ftl");
+            }
+        });
+        
+        get(new FreeMarkerRoute("/edit/:team_index") {
+
+            @Override
+            public ModelAndView handle(Request rqst, Response rspns) {
+                teams.remove(Integer.parseInt(rqst.params(":team_index")));
+                return modelAndView(data,"read.ftl");
             }
         });
     }

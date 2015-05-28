@@ -1,5 +1,5 @@
 body{
-		background-image: url("/img/campo.png");
+	background-image: url("/img/campo.png");
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -52,4 +52,8 @@ div {
 div label {
   width: 50%;
   float: left;
+}
+#footer{
+    margin-top: 5em;
+    background-color: white;
 }

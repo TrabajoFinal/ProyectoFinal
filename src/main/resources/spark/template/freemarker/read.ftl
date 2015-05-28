@@ -9,12 +9,16 @@
 <div role="tabpanel">
 
   <!-- Nav tabs -->
-  <div class="navbar">
-    <ul class="nav" role="tablist">
-      <li role="presentation" class="active"><a href="/freemarker/team" aria-controls="List Users" role="tab" data-toggle="tab"><font color="black">Clasification</font></a></li>
-      <li role="presentation"><a href="/freemarker/team/create" aria-controls="Create User" role="tab" data-toggle="tab"><font color="black">Insertion</font></a></li>
-    </ul>
-  </div>
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+ 
+            <li class="active"><a href="/"><font color="black">Clasification</font></a></li>
+            <li><a href="/create"><font color="black">Insertion</font></a></li>
+ 
+                    </ul>
+    </div>
+</div>
 
   <!-- Tab panes -->
   <div class="tab-content">
@@ -25,13 +29,14 @@
           <div id="cabecera">
             <thead>
               <tr>
+                <th>Pos</th>
                 <th>Equipo</th>  
-                <th>Partidos Jugados</th>
-                <th>Partidos Ganados</th>
-                <th>Partidos Empatados</th>
-                <th>Partidos Perdidos</th>
-                <th>Goles Favor</th>
-                <th>Goles Contra</th>
+                <th>P.J.</th>
+                <th>P.G.</th>
+                <th>P.E.</th>
+                <th>P.P.</th>
+                <th>G.F.</th>
+                <th>G.C.</th>
                 <th>Puntos</th>
                 <th>Action</th>
               </tr>
@@ -42,6 +47,7 @@
           <tbody>
             <#list teams as team>
                 <tr>
+                 <td>${team_index + 1}</td>
                  <td>${team.nombre}</td> 
                  <td>${team.pj}</td>
                  <td>${team.pg}</td>
@@ -51,8 +57,8 @@
                  <td>${team.gc}</td>
                  <td>${team.puntos}</td>
                  <td>
-                    <a href=""><span class="glyphicon glyphicon-edit"></span> Edit</a>
-                    <a href=""><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                    <a href="/edit/${team_index}"><span class="glyphicon glyphicon-edit"></span>Edit</a>
+                    <a href="/delete/${team_index}"><span class="glyphicon glyphicon-trash"></span>Delete</a>
                  </td>
                 </tr>
               </#list>

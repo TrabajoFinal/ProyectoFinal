@@ -10,14 +10,18 @@
 
   <!-- Nav tabs -->
   <div class="navbar">
-    <ul class="nav" role="tablist">
-      <li role="presentation"><a href="/freemarker/team" aria-controls="List Users" role="tab" data-toggle="tab"><font color="black">Clasification</font></a></li>
-      <li role="presentation" class="active"><a href="/freemarker/team/create" aria-controls="Create User" role="tab" data-toggle="tab"><font color="black">Insertion</font></a></li>
-    </ul>
-  </div>
+    <div class="navbar-inner">
+        <ul class="nav">
+ 
+            <li><a href="/"><font color="black">Clasification</font></a></li>
+            <li class="active"><a href="/create"><font color="black">Insertion</font></a></li>
+ 
+                    </ul>
+    </div>
+</div>
   
   <div id="formulario">
-  <form name="team" action="http://localhost:4567/freemarker/team/create" method="post">
+  <form name="team" action="/create" method="post">
  
   <div>
     <label for="nombre">Nombre del equipo</label>
@@ -61,7 +65,7 @@
   
   <div class="col-sm-offset-2 col-sm-10">
 	<button type="submit" class="btn btn-primary">Add</button>
-	<button type="button" class="btn btn-danger" action="http://localhost:4567/freemarker/team/create">Reset</button>
+	<button type="button" class="btn btn-danger" action="/create">Reset</button>
   </div>
 </form>
 

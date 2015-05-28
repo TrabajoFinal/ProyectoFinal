@@ -27,16 +27,40 @@ public class App
                 teams.add(new Team("mi nombre2","pj","pg","pe","pp","gj","gc","puntos"));
                 teams.add(new Team("mi nombre3","pj","pg","pe","pp","gj","gc","puntos"));
                 teams.add(new Team("FC Barcelona","38","5","1","0","45","54","87"));
+                teams.add(new Team("mi nombre","pj","pg","pe","pp","gj","gc","puntos"));
+                teams.add(new Team("mi nombre2","pj","pg","pe","pp","gj","gc","puntos"));
+                teams.add(new Team("mi nombre3","pj","pg","pe","pp","gj","gc","puntos"));
+                teams.add(new Team("FC Barcelona","38","5","1","0","45","54","87"));
+                teams.add(new Team("mi nombre","pj","pg","pe","pp","gj","gc","puntos"));
+                teams.add(new Team("mi nombre2","pj","pg","pe","pp","gj","gc","puntos"));
+                teams.add(new Team("mi nombre3","pj","pg","pe","pp","gj","gc","puntos"));
+                teams.add(new Team("FC Barcelona","38","5","1","0","45","54","87"));
+                teams.add(new Team("mi nombre","pj","pg","pe","pp","gj","gc","puntos"));
+                teams.add(new Team("mi nombre2","pj","pg","pe","pp","gj","gc","puntos"));
+                teams.add(new Team("mi nombre3","pj","pg","pe","pp","gj","gc","puntos"));
+                teams.add(new Team("FC Barcelona","38","5","1","0","45","54","87"));
+                teams.add(new Team("mi nombre","pj","pg","pe","pp","gj","gc","puntos"));
+                teams.add(new Team("mi nombre2","pj","pg","pe","pp","gj","gc","puntos"));
+                teams.add(new Team("mi nombre3","pj","pg","pe","pp","gj","gc","puntos"));
+                teams.add(new Team("mi nombre3","pj","pg","pe","pp","gj","gc","puntos"));
+                
+                
                 
                 final Map<String,Object> data = new HashMap<>();
 
             get(new FreeMarkerRoute("/") {
             @Override
             public ModelAndView handle(Request request, Response response) {
+                int num_pagina = teams.size();
+                int primera = num_pagina/3;
                 
+                for(int i=0; i<primera; i++){
                 data.put("teams",teams);
                 
+                
                 return modelAndView(data, "read.ftl");
+                }
+                return null;
             }
         });
            

@@ -9,16 +9,16 @@
 <div role="tabpanel">
 
   <!-- Nav tabs -->
-<div class="navbar">
+  <div class="navbar">
     <div class="navbar-inner">
-        <ul class="nav">
- 
-            <li class="active"><a href="/"><font color="black">Clasification</font></a></li>
-            <li><a href="/create"><font color="black">Insertion</font></a></li>
- 
-                    </ul>
+      <ul class="nav">
+
+        <li class="active"><a href="/"><font color="black">Clasification</font></a></li>
+        <li><a href="/create"><font color="black">Insertion</font></a></li>
+
+      </ul>
     </div>
-</div>
+  </div>
 
   <!-- Tab panes -->
   <div class="tab-content">
@@ -44,38 +44,42 @@
           </div>
 
           <div id="cuerpo">
-          <tbody>
-            <#list teams as team>
-                <tr>
-                 <td>${team_index + 1}</td>
-                 <td>${team.nombre}</td> 
-                 <td>${team.pj}</td>
-                 <td>${team.pg}</td>
-                 <td>${team.pe}</td>
-                 <td>${team.pp}</td>
-                 <td>${team.gf}</td>
-                 <td>${team.gc}</td>
-                 <td>${team.puntos}</td>
-                 <td>
-                    <a href="/update/${team_index}"><span class="glyphicon glyphicon-edit"></span>Edit</a>
-                    <a href="/delete/${team_index}"><span class="glyphicon glyphicon-trash"></span>Delete</a>
-                 </td>
-                </tr>
-              </#list>
-            </tbody>
-          </div>
-        </table>
-      </div>
-
-      <nav>
-        <ul class="pager">
-          <li><a href="#">Previous</a></li>
-          <li><a href="#">Next</a></li>
-        </ul>
-      </nav>
-      
+            <tbody>
+              <#list teams as team>
+              <tr>
+               <#if (team_index <= 3)>
+               <td bgcolor="#8BFB65" width="8">${team_index + 1}</td>
+               </#if>
+               <#if (team_index == 4 || team_index == 5)>
+               <td bgcolor="#F78D4C">${team_index + 1}</td>
+               </#if>
+               <#if (team_index > 5 && team_index < 17)>
+               <td>${team_index + 1}</td>
+               </#if>
+               <#if (team_index >= 17)>
+               <td bgcolor="#F72C2C">${team_index + 1}</td>
+               </#if>
+               <td>${team.nombre}</td>
+               <td>${team.pj}</td>
+               <td>${team.pg}</td>
+               <td>${team.pe}</td>
+               <td>${team.pp}</td>
+               <td>${team.gf}</td>
+               <td>${team.gc}</td>
+               <td>${team.puntos}</td>
+               <td>
+                <a href="/update/${team_index}"><span class="glyphicon glyphicon-edit"></span>Edit</a>
+                <a href="/delete/${team_index}"><span class="glyphicon glyphicon-trash"></span>Delete</a>
+              </td>
+            </tr>
+            </#list>
+          </tbody>
+        </div>
+      </table>
     </div>
+
   </div>
+</div>
 
 </div>
 

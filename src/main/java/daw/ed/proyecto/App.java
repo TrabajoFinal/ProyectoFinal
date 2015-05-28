@@ -16,62 +16,52 @@ import spark.template.freemarker.FreeMarkerRoute;
  * Hello world!
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
-                Spark.staticFileLocation("/public");
-                final ArrayList<Team> teams = new ArrayList<>();
-                
-                teams.add(new Team("mi nombre","pj","pg","pe","pp","gj","gc","puntos"));
-                teams.add(new Team("mi nombre2","pj","pg","pe","pp","gj","gc","puntos"));
-                teams.add(new Team("mi nombre3","pj","pg","pe","pp","gj","gc","puntos"));
-                teams.add(new Team("FC Barcelona","38","5","1","0","45","54","87"));
-                teams.add(new Team("mi nombre","pj","pg","pe","pp","gj","gc","puntos"));
-                teams.add(new Team("mi nombre2","pj","pg","pe","pp","gj","gc","puntos"));
-                teams.add(new Team("mi nombre3","pj","pg","pe","pp","gj","gc","puntos"));
-                teams.add(new Team("FC Barcelona","38","5","1","0","45","54","87"));
-                teams.add(new Team("mi nombre","pj","pg","pe","pp","gj","gc","puntos"));
-                teams.add(new Team("mi nombre2","pj","pg","pe","pp","gj","gc","puntos"));
-                teams.add(new Team("mi nombre3","pj","pg","pe","pp","gj","gc","puntos"));
-                teams.add(new Team("FC Barcelona","38","5","1","0","45","54","87"));
-                teams.add(new Team("mi nombre","pj","pg","pe","pp","gj","gc","puntos"));
-                teams.add(new Team("mi nombre2","pj","pg","pe","pp","gj","gc","puntos"));
-                teams.add(new Team("mi nombre3","pj","pg","pe","pp","gj","gc","puntos"));
-                teams.add(new Team("FC Barcelona","38","5","1","0","45","54","87"));
-                teams.add(new Team("mi nombre","pj","pg","pe","pp","gj","gc","puntos"));
-                teams.add(new Team("mi nombre2","pj","pg","pe","pp","gj","gc","puntos"));
-                teams.add(new Team("mi nombre3","pj","pg","pe","pp","gj","gc","puntos"));
-                teams.add(new Team("mi nombre3","pj","pg","pe","pp","gj","gc","puntos"));
-                
-                
-                
-                final Map<String,Object> data = new HashMap<>();
+public class App {
 
-            get(new FreeMarkerRoute("/") {
+    public static void main(String[] args) {
+        Spark.staticFileLocation("/public");
+        final ArrayList<Team> teams = new ArrayList<>();
+
+        teams.add(new Team("mi nombre", "pj", "pg", "pe", "pp", "gj", "gc", "puntos"));
+        teams.add(new Team("mi nombre2", "pj", "pg", "pe", "pp", "gj", "gc", "puntos"));
+        teams.add(new Team("mi nombre3", "pj", "pg", "pe", "pp", "gj", "gc", "puntos"));
+        teams.add(new Team("FC Barcelona", "38", "5", "1", "0", "45", "54", "87"));
+        teams.add(new Team("mi nombre", "pj", "pg", "pe", "pp", "gj", "gc", "puntos"));
+        teams.add(new Team("mi nombre2", "pj", "pg", "pe", "pp", "gj", "gc", "puntos"));
+        teams.add(new Team("mi nombre3", "pj", "pg", "pe", "pp", "gj", "gc", "puntos"));
+        teams.add(new Team("FC Barcelona", "38", "5", "1", "0", "45", "54", "87"));
+        teams.add(new Team("mi nombre", "pj", "pg", "pe", "pp", "gj", "gc", "puntos"));
+        teams.add(new Team("mi nombre2", "pj", "pg", "pe", "pp", "gj", "gc", "puntos"));
+        teams.add(new Team("mi nombre3", "pj", "pg", "pe", "pp", "gj", "gc", "puntos"));
+        teams.add(new Team("FC Barcelona", "38", "5", "1", "0", "45", "54", "87"));
+        teams.add(new Team("mi nombre", "pj", "pg", "pe", "pp", "gj", "gc", "puntos"));
+        teams.add(new Team("mi nombre2", "pj", "pg", "pe", "pp", "gj", "gc", "puntos"));
+        teams.add(new Team("mi nombre3", "pj", "pg", "pe", "pp", "gj", "gc", "puntos"));
+        teams.add(new Team("FC Barcelona", "38", "5", "1", "0", "45", "54", "87"));
+        teams.add(new Team("mi nombre", "pj", "pg", "pe", "pp", "gj", "gc", "puntos"));
+        teams.add(new Team("mi nombre2", "pj", "pg", "pe", "pp", "gj", "gc", "puntos"));
+        teams.add(new Team("mi nombre3", "pj", "pg", "pe", "pp", "gj", "gc", "puntos"));
+        teams.add(new Team("mi nombre3", "pj", "pg", "pe", "pp", "gj", "gc", "puntos"));
+
+        final Map<String, Object> data = new HashMap<>();
+
+        get(new FreeMarkerRoute("/") {
             @Override
             public ModelAndView handle(Request request, Response response) {
-                int num_pagina = teams.size();
-                int primera = num_pagina/3;
-                
-                for(int i=0; i<primera; i++){
-                data.put("teams",teams);
-                
-                
+
+                data.put("teams", teams);
+
                 return modelAndView(data, "read.ftl");
-                }
-                return null;
             }
         });
-           
+
         get(new FreeMarkerRoute("/create") {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 return modelAndView(null, "create.ftl");
             }
         });
-        
-        
+
         post(new Route("/create") {
             @Override
             public Object handle(Request request, Response response) {
@@ -84,33 +74,33 @@ public class App
                         request.queryParams("gc"),
                         request.queryParams("puntos")
                 ));
-                
+
                 response.redirect("/");
-                
+
                 return null;
             }
         });
-        
+
         get(new FreeMarkerRoute("/delete/:team_index") {
 
             @Override
             public ModelAndView handle(Request rqst, Response rspns) {
                 teams.remove(Integer.parseInt(rqst.params(":team_index")));
-                return modelAndView(data,"read.ftl");
+                return modelAndView(data, "read.ftl");
             }
         });
-        
+
         get(new FreeMarkerRoute("/update/:team_index") {
 
             @Override
             public ModelAndView handle(Request rqst, Response rspns) {
                 int id = Integer.parseInt(rqst.params(":team_index"));
-                data.put("team",teams.get(id));
-                data.put("team_index",id);
-                return modelAndView(data,"update.ftl");
+                data.put("team", teams.get(id));
+                data.put("team_index", id);
+                return modelAndView(data, "update.ftl");
             }
         });
-        
+
         post(new FreeMarkerRoute("/update/:team_index") {
 
             @Override
@@ -124,9 +114,9 @@ public class App
                 teams.get(id).setGf(rqst.queryParams("gf"));
                 teams.get(id).setGc(rqst.queryParams("gc"));
                 teams.get(id).setPuntos(rqst.queryParams("puntos"));
- 
+
                 rspns.redirect("/");
-                
+
                 return null;
             }
         });

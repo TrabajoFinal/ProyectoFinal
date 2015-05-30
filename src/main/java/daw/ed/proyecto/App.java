@@ -1,23 +1,36 @@
 package daw.ed.proyecto;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.bson.Document;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
-import spark.Route;
 import spark.Spark;
 import static spark.Spark.get;
-import static spark.Spark.post;
 import spark.template.freemarker.FreeMarkerRoute;
+import org.bson.Document;
+import org.bson.conversions.Bson;
+import spark.Route;
+import static spark.Spark.post;
+import org.bson.types.ObjectId;
+import static com.mongodb.client.model.Filters.*;
 
 /**
- * Hello world!
+ * LigaBBVA!
  *
  */
 public class App {
@@ -25,9 +38,15 @@ public class App {
     public static void main(String[] args) {
 
         Spark.staticFileLocation("/public");
-        final ArrayList<Team> teams = new ArrayList<>();
 
-        teams.add(new Team("FC Barcelona", "38", "30", "4", "4", "110", "21", "94"));
+        MongoClient cliente = new MongoClient();
+        MongoDatabase bd = cliente.getDatabase("ligaBBVA");
+        final MongoCollection<Document> collection = bd.getCollection("equipos");
+
+        final ArrayList<Team> teams = new ArrayList<>();
+        final Map<String, Object> data = new HashMap<>();
+
+        /*teams.add(new Team("FC Barcelona", "38", "30", "4", "4", "110", "21", "94"));
          teams.add(new Team("Real Madrid CF", "38", "30", "2", "6", "118", "38", "92"));
          teams.add(new Team("Atletico Madrid", "38", "23", "9", "6", "67", "29", "78"));
          teams.add(new Team("Valencia CF", "38", "22", "11", "5", "70", "32", "77"));
@@ -46,13 +65,32 @@ public class App {
          teams.add(new Team("Granada CF", "38", "7", "14", "17", "29", "64", "35"));
          teams.add(new Team("SD Eibar", "38", "9", "8", "21", "34", "55", "35"));
          teams.add(new Team("UD Almeria", "38", "8", "8", "22", "35", "64", "32"));
-         teams.add(new Team("FC Cordoba", "38", "3", "11", "24", "22", "68", "20"));
-        final Map<String, Object> data = new HashMap<>();
+         teams.add(new Team("FC Cordoba", "38", "3", "11", "24", "22", "68", "20"));*/
 
         get(new FreeMarkerRoute("/") {
             @Override
             public ModelAndView handle(Request request, Response response) {
 
+                teams.clear();
+
+                MongoCursor<Document> cursor = collection.find().iterator();
+
+                while (cursor.hasNext()) {
+                    Document objetoequipo = cursor.next();
+                    teams.add(new Team(
+                            (ObjectId) objetoequipo.get("_id"),
+                            objetoequipo.getString("nombre"),
+                            objetoequipo.getString("pj"),
+                            objetoequipo.getString("pg"),
+                            objetoequipo.getString("pe"),
+                            objetoequipo.getString("pp"),
+                            objetoequipo.getString("gf"),
+                            objetoequipo.getString("gc"),
+                            objetoequipo.getString("puntos")
+                    ));
+                }
+
+                cursor.close();
                 data.put("teams", teams);
 
                 return modelAndView(data, "read.ftl");
@@ -69,47 +107,30 @@ public class App {
         post(new Route("/create") {
             @Override
             public Object handle(Request request, Response response) {
-                /*MongoClient client = new MongoClient("127.0.0.1", 53403);
-                MongoDatabase database = client.getDatabase("equipos");
-                MongoCollection<Document> collection = database.getCollection("insertTeam");
+                Team team = new Team();
+                team.setNombre(request.queryParams("nombre"));
+                team.setPj(request.queryParams("pj"));
+                team.setPg(request.queryParams("pg"));
+                team.setPe(request.queryParams("pe"));
+                team.setPp(request.queryParams("pp"));
+                team.setGf(request.queryParams("gf"));
+                team.setGc(request.queryParams("gc"));
+                team.setPuntos(request.queryParams("puntos"));
 
-                collection.drop();*/
+                Document doc = new Document();
+                doc.append("nombre", team.getNombre());
+                doc.append("pj", team.getPj());
+                doc.append("pg", team.getPg());
+                doc.append("pe", team.getPe());
+                doc.append("pp", team.getPp());
+                doc.append("gf", team.getGf());
+                doc.append("gc", team.getGc());
+                doc.append("puntos", team.getPuntos());
 
-                /*Team doc = new Team(request.queryParams("nombre"),
-                 request.queryParams("pj"),
-                 request.queryParams("pg"),
-                 request.queryParams("pe"),
-                 request.queryParams("pp"),
-                 request.queryParams("gf"),
-                 request.queryParams("gc"),
-                 request.queryParams("puntos")
-                 );
-                Document equipo = new Document()
-                        .append("nombre", request.queryParams("nombre"))
-                        .append("pj", request.queryParams("pj"))
-                        .append("pg", request.queryParams("pg"))
-                        .append("pe", request.queryParams("pe"))
-                        .append("pp", request.queryParams("pp"))
-                        .append("gf", request.queryParams("gf"))
-                        .append("gc", request.queryParams("gc"))
-                        .append("puntos", request.queryParams("puntos"));*/
-                
-                teams.add(new Team(request.queryParams("nombre"),
-                 request.queryParams("pj"),
-                 request.queryParams("pg"),
-                 request.queryParams("pe"),
-                 request.queryParams("pp"),
-                 request.queryParams("gf"),
-                 request.queryParams("gc"),
-                 request.queryParams("puntos")
-                 ));
-                
-                 /*for(int i=0; i<teams.size(); i++){
-                 teams.add(doc);
-                 }*/
+                collection.insertOne(doc);
 
-                /*collection.insertOne(equipo);
-                client.close();*/
+                ObjectId id = (ObjectId) doc.get("_id");
+                team.setId(id);
 
                 response.redirect("/");
 
@@ -117,42 +138,72 @@ public class App {
             }
         });
 
-        get(new FreeMarkerRoute("/delete/:team_index") {
+        get(new FreeMarkerRoute("/delete/:id") {
 
             @Override
             public ModelAndView handle(Request rqst, Response rspns) {
-                teams.remove(Integer.parseInt(rqst.params(":team_index")));
-                return modelAndView(data, "read.ftl");
+
+                ObjectId id = new ObjectId(rqst.params(":id"));
+
+                collection.deleteOne(eq("_id", id));
+
+                rspns.redirect("/");
+                return null;
             }
         });
 
-        get(new FreeMarkerRoute("/update/:team_index") {
+        get(new FreeMarkerRoute("/update/:id") {
 
             @Override
-            public ModelAndView handle(Request rqst, Response rspns) {
-                int id = Integer.parseInt(rqst.params(":team_index"));
-                data.put("team", teams.get(id));
-                data.put("team_index", id);
+            public ModelAndView handle(Request request, Response response) {
+                ObjectId id = new ObjectId(request.params(":id"));
+
+                Bson filter = eq("_id", id);
+                Document doc = collection.find(filter).first();
+
+                Team equipo = new Team(
+                        (ObjectId) doc.get(id),
+                        doc.getString("nombre"),
+                        doc.getString("pj"),
+                        doc.getString("pg"),
+                        doc.getString("pe"),
+                        doc.getString("pp"),
+                        doc.getString("gf"),
+                        doc.getString("gc"),
+                        doc.getString("puntos"));
+
+                data.put("equipo", equipo);
                 return modelAndView(data, "update.ftl");
             }
         });
 
-        post(new FreeMarkerRoute("/update/:team_index") {
+        post(new FreeMarkerRoute("/update/:id") {
 
             @Override
-            public ModelAndView handle(Request rqst, Response rspns) {
-                int id = Integer.parseInt(rqst.params(":team_index"));
-                teams.get(id).setNombre(rqst.queryParams("nombre"));
-                teams.get(id).setPj(rqst.queryParams("pj"));
-                teams.get(id).setPg(rqst.queryParams("pg"));
-                teams.get(id).setPe(rqst.queryParams("pe"));
-                teams.get(id).setPp(rqst.queryParams("pp"));
-                teams.get(id).setGf(rqst.queryParams("gf"));
-                teams.get(id).setGc(rqst.queryParams("gc"));
-                teams.get(id).setPuntos(rqst.queryParams("puntos"));
+            public ModelAndView handle(Request request, Response response) {
+                ObjectId id = new ObjectId(request.params(":id"));
+                Team team = new Team();
+                team.setNombre(request.queryParams("nombre"));
+                team.setPj(request.queryParams("pj"));
+                team.setPg(request.queryParams("pg"));
+                team.setPe(request.queryParams("pe"));
+                team.setPp(request.queryParams("pp"));
+                team.setGf(request.queryParams("gf"));
+                team.setGc(request.queryParams("gc"));
+                team.setPuntos(request.queryParams("puntos"));
 
-                rspns.redirect("/");
+                collection.updateOne(eq("_id", id), new Document("$set", new Document()
+                        .append("nombre", team.getNombre())
+                        .append("pj", team.getPj())
+                        .append("pg", team.getPg())
+                        .append("pe", team.getPe())
+                        .append("pp", team.getPp())
+                        .append("gf", team.getGf())
+                        .append("gc", team.getGc())
+                        .append("puntos", team.getPuntos())
+                ));
 
+                response.redirect("/");
                 return null;
             }
         });

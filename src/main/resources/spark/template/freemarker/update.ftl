@@ -21,46 +21,47 @@
 </div>
   
   <div id="formulario">
-  <form name="team" action="/update/${team_index}" method="post">
+  
+  <form name="team" action="/update/${equipo.id}" method="post">
  
   <div>
     <label for="nombre">Nombre del equipo</label>
-    <input type="text" name="nombre" value="${team.nombre}"/>
+    <input type="text" name="nombre" value="${equipo.nombre}"/>
   </div>
  
   <div>
     <label for="pj">Partidos Jugados</label>
-    <input type="text" name="pj" value="${team.pj}"/>
+    <input type="text" name="pj" value="${equipo.pj}"/>
   </div>
   
   <div>
     <label for="pg">Partidos Ganados</label>
-    <input type="text" name="pg" value="${team.pg}"/>
+    <input type="text" name="pg" value="${equipo.pg}"/>
   </div>
   
   <div>
     <label for="pe">Partidos Empatados</label>
-    <input type="text" name="pe" value="${team.pe}"/>
+    <input type="text" name="pe" value="${equipo.pe}"/>
   </div>
   
   <div>
     <label for="pp">Partidos Perdidos</label>
-    <input type="text" name="pp" value="${team.pp}"/>
+    <input type="text" name="pp" value="${equipo.pp}"/>
   </div>
   
   <div>
     <label for="gf">Goles Favor</label>
-    <input type="text" name="gf" value="${team.gf}"/>
+    <input type="text" name="gf" value="${equipo.gf}"/>
   </div>
   
   <div>
     <label for="gc">Goles Contra</label>
-    <input type="text" name="gc" value="${team.gc}"/>
+    <input type="text" name="gc" value="${equipo.gc}"/>
   </div>
 
   <div>
     <label for="puntos">Puntos</label>
-    <input type="text" name="puntos" value="${team.puntos}"/>
+    <input type="text" name="puntos" value="${equipo.puntos}"/>
   </div>
   
   <div class="col-sm-offset-2 col-sm-10">

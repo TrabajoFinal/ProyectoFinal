@@ -6,6 +6,7 @@
 package daw.ed.proyecto;
 
 import java.io.Serializable;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -13,6 +14,7 @@ import java.io.Serializable;
  */
 public class Team implements Serializable{
 
+    private ObjectId id;
     private String nm;
     private String pj;
     private String pg;
@@ -24,6 +26,18 @@ public class Team implements Serializable{
 
     public Team() {
 
+    }
+    
+    public Team(ObjectId id, String nm, String pj, String pg, String pe, String pp, String gf, String gc, String puntos) {
+        this.id = id;
+        this.nm = nm;
+        this.pj = pj;
+        this.pg = pg;
+        this.pe = pe;
+        this.pp = pp;
+        this.gf = gf;
+        this.gc = gc;
+        this.puntos = puntos;
     }
 
     public Team(String nm, String pj, String pg, String pe, String pp, String gf, String gc, String puntos) {
@@ -101,9 +115,13 @@ public class Team implements Serializable{
         this.puntos = puntos;
     }
 
-    @Override
-    public String toString() {
-        return "Team{" + "nm=" + nm + ", pj=" + pj + ", pg=" + pg + ", pe=" + pe + ", pp=" + pp + ", gf=" + gf + ", gc=" + gc + ", puntos=" + puntos + '}';
+    public Object getId() {
+        return id;
+    }
+
+
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
 }

@@ -152,7 +152,7 @@ public class App {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 ObjectId id = new ObjectId(request.params(":id"));
-                
+
                 Team team = new Team();
                 team.setNombre(request.queryParams("nombre"));
                 team.setPj(request.queryParams("pj"));

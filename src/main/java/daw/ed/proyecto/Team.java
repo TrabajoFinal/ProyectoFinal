@@ -12,7 +12,7 @@ import org.bson.types.ObjectId;
  *
  * @author shaheer
  */
-public class Team implements Serializable{
+public class Team implements Serializable {
 
     private ObjectId id;
     private String nm;
@@ -27,7 +27,7 @@ public class Team implements Serializable{
     public Team() {
 
     }
-    
+
     public Team(ObjectId id, String nm, String pj, String pg, String pe, String pp, String gf, String gc, String puntos) {
         this.id = id;
         this.nm = nm;
@@ -118,7 +118,6 @@ public class Team implements Serializable{
     public Object getId() {
         return id;
     }
-
 
     public void setId(ObjectId id) {
         this.id = id;

@@ -1,6 +1,9 @@
 package daw.ed.proyecto;
 
 import com.mongodb.MongoClient;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
+import com.mongodb.WriteConcern;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
@@ -19,6 +22,10 @@ import spark.Route;
 import static spark.Spark.post;
 import org.bson.types.ObjectId;
 import static com.mongodb.client.model.Filters.*;
+import java.util.Arrays;
+import static spark.Spark.setIpAddress;
+import static spark.Spark.setPort;
+import static spark.Spark.staticFileLocation;
 
 /**
  * LigaBBVA!
@@ -26,8 +33,15 @@ import static com.mongodb.client.model.Filters.*;
  */
 public class App {
 
+    private static final String IP_ADDRESS = System.getenv("OPENSHIFT_DIY_IP") != null ? System.getenv("OPENSHIFT_DIY_IP") : "localhost";
+    private static final int PORT = System.getenv("OPENSHIFT_DIY_PORT") != null ? Integer.parseInt(System.getenv("OPENSHIFT_DIY_PORT")) : 4567;
+
     public static void main(String[] args) {
 
+        setIpAddress(IP_ADDRESS);
+        setPort(PORT);
+        staticFileLocation("/public");
+        
         Spark.staticFileLocation("/public");
 
         MongoClient cliente = new MongoClient();
@@ -178,5 +192,30 @@ public class App {
                 return null;
             }
         });
+    
+    
+        
     }
+    
+    public static MongoDatabase mongo() throws Exception {
+        String host = System.getenv("OPENSHIFT_MONGODB_DB_HOST");
+        if (host == null) {
+            MongoClient mongoClient = new MongoClient("localhost");
+            return mongoClient.getDatabase("ligaBBVA");
+        }
+        int port = Integer.parseInt(System.getenv("OPENSHIFT_MONGODB_DB_PORT"));
+        String dbname = System.getenv("OPENSHIFT_APP_NAME");
+        String username = System.getenv("OPENSHIFT_MONGODB_DB_USERNAME");
+        String password = System.getenv("OPENSHIFT_MONGODB_DB_PASSWORD");
+        MongoCredential credential = MongoCredential.createCredential(username, "admin", password.toCharArray());
+        MongoClient mongoClient = new MongoClient(new ServerAddress(host, port), Arrays.asList(credential));
+        mongoClient.setWriteConcern(WriteConcern.SAFE);
+        MongoDatabase db = mongoClient.getDatabase("ligaBBVA");
+        return db;
+    
 }
+}
+        
+    
+    
+
